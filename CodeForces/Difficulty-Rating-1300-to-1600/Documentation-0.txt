@@ -1,0 +1,24 @@
+001-1861-Rotating-the-Box
+https://leetcode.com/problems/rotating-the-box/description/
+
+
+    Solution 1 :-
+
+    Keep shifting the stones one by one towards the right, starting with the
+    rightmost stone in every row of the box.
+
+
+    Solution 2 :-
+
+    Similar to solution 1, but instead of using a loop to find the rightmost
+    possible empty cell, it is found on the go.
+
+
+--------------------------------------------------------------------------------
+
+
+001-817B-Makes-And-The-Product
+https://codeforces.com/problemset/problem/817/B
+
+
+    Solution :-

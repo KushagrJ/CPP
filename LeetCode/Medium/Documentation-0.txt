@@ -22,196 +22,33 @@ If it is given that an array is sorted, then to know whether the array is sorted
 in increasing or decreasing order, only the first and last elements of the array
 need to be compared.
 
+To apply binary search on an infinite array, use that 'doubling the search
+space' method.
 
---------------------------------------------------------------------------------
-
-
-003-300-Longest-Increasing-Subsequence
-
-
-    SIS == strictly increasing subsequence.
-
-
-    Problem :-
-
-    Given an integer array nums[], what is the length of a longest SIS?
-
-    A subsequence is a sequence that can be derived from an array by deleting
-    some or no elements without changing the order of the remaining elements.
-    For eg., [3, 6, 2, 7] is a subsequence of the array [0, 3, 1, 6, 2, 2, 7].
-
-
-    Optimal Substructure :-
-
-    For eg., if [1, 2, 5, 7, 9] is a longest SIS, then [2, 5, 7] must also be a
-    longest SIS beginning with that 2 and terminating with that 7.
-
-
-    Solution 1 (Dynamic Programming) :-
-
-    Among all of the SISes terminating at nums[i], let ans[i] be the length of a
-    longest such SIS, i.e. let ans[i] be the value of an optimal solution to the
-    i-th subproblem of this problem (with respect to this algorithm).
-
-    Thus, for the full problem, the value of an optimal solution, i.e. the
-    length of a longest SIS, is max(ans[0], ans[1], ... , ans[nums_size - 1]).
-
-    The recursive definition of the value of an optimal solution to this
-    problem is as follows:
-    (1) If i == 0, then ans[i] = 1.
-    (2) If i > 0, then ans[i] = among all of the values of ans[j] (0 <= j < i)
-        such that nums[j] < nums[i], a maximum such value of ans[j] plus 1.
-        If no such j exists, then ans[i] = 1.
-
-
-    Solution 2 (Dynamic Programming) :-
-
-    For every possible length i, this algorithm 'implicitly' stores exactly one
-    SIS of length i, and tries to find new SISes only on the basis of the
-    terminating elements of the currently stored SISes.
-
-    The choice of the optimal SIS to store when multiple subsequences are
-    strictly increasing and are of the same length is done as follows :-
-    If, for eg., [1, 2] and [1, 3, 7] are currently stored SISes of lengths 2
-    and 3, respectively, and if 5 is the next integer to be processed, then it
-    is always better to append 5 to [1, 2] and store [1, 2, 5] as the new SIS of
-    length 3, instead of moving ahead with [1, 3, 7].
-    This is because if 6 is the next integer to be processed, then by looking
-    only at the terminating elements of the currently stored SISes, an SIS of
-    length 4 (i.e. [1, 2, 5, 6]) can be obtained if [1, 2, 5] is the currently
-    stored SIS of length 3, instead of [1, 3, 7].
-
-    This algorithm begins with [-INF] as the zeroth SIS of length 0.
-    [Since -INF is not an element of the given array, therefore [-INF] is not a
-     valid subsequence. But, to make the algorithm easier, [-INF] is considered
-     to be an SIS of length 0.]
-
-    Now, for every new integer x that is processed, x can be appended to at
-    least one of the currently stored SISes.
-
-    For eg., if after processing a few integers, the currently stored SISes are
-    as follows:
-    0. [-INF],
-    1. [-INF, 0],
-    2. [-INF, 0, 1],
-    3. [-INF, 0, 2, 5],
-    and if 3 is the next integer to be processed, then by looking only at the
-    terminating elements of the currently stored SISes, it can be seen that 3
-    can be appended to SIS 0, SIS 1 and SIS 2.
-    Now, appending 3 to SIS 0 and storing the resulting SIS (i.e. [-INF, 3]) as
-    the new SIS 1 (instead of the current SIS 1, i.e. [-INF, 0]) would not be
-    beneficial, for the reason discussed above.
-    Similarly, appending 3 to SIS 1 and storing the resulting SIS as the new
-    SIS 2 would not be beneficial either.
-    However, appending 3 to SIS 2 and storing the resulting SIS (i.e.
-    [-INF, 0, 1, 3]) as the new SIS 3 (instead of the current SIS 3, i.e.
-    [-INF, 0, 2, 5]) would be beneficial.
-
-    Thus, in general, it can be seen that among all of the currently stored
-    SISes to which x can be appended, appending x to only the longest possible
-    SIS (of length, say, k) and storing the resulting SIS as the new (k + 1)-th
-    SIS would be beneficial in every case.
-
-    Now, since the aim is to find only the length of the longest SIS, and not
-    the actual subsequence, therefore storing only the terminating elements of
-    the SISes is enough, as new SISes are found only on the basis of the
-    terminating elements of the currently stored SISes.
-    [The SISes are stored 'implicitly' means that only the terminating elements
-     of the SISes are stored, instead of storing the actual subsequences]
-
-    With repsect to this algorithm, a subproblem for this problem is to find an
-    optimal SIS of length i.
-
-    Due to the maximum possible value of i not being known beforehand (as the
-    aim of this algorithm is to find this maximum possible value of i),
-    recursively defining the value of an optimal solution to this problem and
-    implementing this algorithm in a top-down fashion (with or without
-    memoization) is difficult.
-
-    Let c[i] be the terminating element of the i-th currently stored SIS whose
-    length is i.
-    Then, for every new integer x that is processed, the longest possible SIS to
-    which x can be appended is the k-th currently stored SIS, where k is the
-    largest possible value for which c[k] < x.
-
-    Now, it can be seen that during the execution of the algorithm, the c[]
-    array is always sorted in a non-decresing order.
-    Therefore, binary search can be used to find the index (say, k) of the last
-    element of c[] which is smaller than x.
-    After k has been found, x can simply be assigned to c[k + 1].
-
-    After the entire nums[] array has been processed, the length of the longest
-    SIS is given by the index of the last element of c[].
-    A counter can be used to keep track of the index of the last element of c[].
+If an array is given such that it is first strictly increasing and then
+strictly decreasing, then to find the largest element, binary search can be
+used by repeatedly comparing a[mid] and a[mid + 1], as if a[mid] < a[mid + 1],
+then the largest element lies to the right, and if a[mid] > a[mid + 1], then
+the largest element lies to the left.
 
 
 --------------------------------------------------------------------------------
 
 
-004-70-Climbing-Stairs-Harder-Version
+001-1861-Rotating-the-Box
+https://leetcode.com/problems/rotating-the-box/description/
 
 
-    Problem :-
+    Solution 1 :-
 
-    A person is climbing a staircase, with 0 being the starting step.
-    The topmost step is the n-th (non-negative integer) step.
-    The person can climb 1 or 2 or ... or m (positive integer) steps at a time.
-    In how many distinct ways can the person climb to the top?
-
-    For eg., n = 3 and m = 2.
-    Way 1: "0 -> 1 -> 3"
-    Way 2: "0 -> 2 -> 3"
-    Way 3: "0 -> 1 -> 2 -> 3"
-    So, for n = 3 and m = 2, no. of distinct ways = 3.
+    Keep shifting the stones one by one towards the right, starting with the
+    rightmost stone in every row of the box.
 
 
-    Solution (Divide-and-Conquer with Tabulation) :-
+    Solution 2 :-
 
-    Let ans[i] be the no. of distinct ways in which the person can climb to the
-    i-th step, under the constraint that they can climb at most m steps at a
-    time.
-    Thus, the solution to the problem is ans[n].
-
-    The base case is i = 0, for which ans[0] = 1, since for every value of m,
-    there is only one way to go from the 0-th step to the 0-th step itself.
-
-    Now, for every step i > 0,
-        Since the person can climb at most m steps at a time,
-        Therefore, we have the following cases -
-            Case 1: The person climbs to the i-th step using a 1-step jump.
-                    In this case, ans[i] = ans[i - 1], as " -> i" can be
-                    appended to every distinct way to climb (i - 1) steps.
-            Case 2: The person climbs to the i-th step using a 2-step jump.
-                    In this case, ans[i] = ans[i - 2], as " -> i" can be
-                    appended to every distinct way to climb (i - 2) steps.
-            ...
-            ...
-            ...
-            Case m: The person climbs to the i-th step using an m-step jump.
-                    In this case, ans[i] = ans[i - m], as " -> i" can be
-                    appended to every distinct way to climb (i - m) steps.
-        Thus, ans[i] = (ans[i - 1] + ans[i - 2] + ... + ans[i - m]).
-
-
-    The following procedure handles the edge cases by setting the values of
-    ans[-1], ans[-2], ... equal to 0, as required :-
-
-    ans[-m] = ans[-m + 1] = ans[-m + 2] = ... = ans[-1] = 0;
-    ans[0] = 1;
-
-    int current_sum = 0;
-
-    for (int i = 1; i <= n; i++)
-    {
-        current_sum -= ans[i - m - 1];
-        current_sum += ans[i - 1];
-
-        ans[i] = current_sum;
-    }
-
-    [Instead of calculating the sum (ans[i - 1] + ans[i - 2] + ... + ans[i - m])
-     every time, the leftmost element is subtracted from the current sum and the
-     new rightmost element is added to the current sum]
+    Similar to solution 1, but instead of using a loop to find the rightmost
+    possible empty cell, it is found on the go.
 
 
 --------------------------------------------------------------------------------
