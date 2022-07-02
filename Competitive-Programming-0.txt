@@ -1,0 +1,122 @@
+a = a + b, b = a - b, a = a - b; should not be used for swapping, as the result
+may overflow.
+
+For integers, (x & 1) evaluates to 1 if x is odd.
+
+For unsigned integers, ((x / y) + (x % y != 0)) does ceiling division.
+Another approach is to use ((x + y - 1) / y), but this may cause an overflow.
+So, this approach should only be used when it is guaranteed that overflow will
+not occur.
+
+To sort an array when the range of inputs is known beforehand, a simplified
+version of counting sort can be used.
+For eg., to sort an array consisting only of 0's, 1's and 2's, the number of
+0's, 1's and 2's in the input array can be counted (say n0, n1 and n2). Then, in
+the array, the first n0 elements can be assigned 0, the next n1 elements can be
+assigned 1 and the final n2 elements can be assigned 2.
+
+For unsigned integers, (a + b) is divisible by k if and only if a and b are both
+divisible by k, or if ((a % k) + (b % k)) is equal to k.
+
+If it is given that an array is sorted, then to know whether the array is sorted
+in increasing or decreasing order, only the first and last elements of the array
+need to be compared.
+
+To apply binary search on an infinite array, use that 'doubling the search
+space' method.
+
+If an array is given such that it is first strictly increasing and then
+strictly decreasing, then to find the largest element, binary search can be
+used by repeatedly comparing a[mid] and a[mid + 1], as if a[mid] < a[mid + 1],
+then the largest element lies to the right, and if a[mid] > a[mid + 1], then
+the largest element lies to the left.
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
+001-1861-Rotating-the-Box
+https://leetcode.com/problems/rotating-the-box/description/
+
+
+    Solution 1 :-
+
+    Keep shifting the stones one by one towards the right, starting with the
+    rightmost stone in every row of the box.
+
+
+    Solution 2 :-
+
+    Similar to solution 1, but instead of using a loop to find the rightmost
+    possible empty cell, it is found on the go.
+
+
+--------------------------------------------------------------------------------
+
+
+002-2064-Minimized-Maximum-of-Products-Distributed-to-Any-Store
+https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/description/
+
+
+    Solution :-
+
+    Use a function which checks whether k is the value of a possible solution to
+    the problem, and use this function to (binary) search the smallest possible
+    value of k.
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
+001-817B-Makes-And-The-Product
+https://codeforces.com/problemset/problem/817/B
+
+
+    Solution :-
+
+    Let min_1[i] be the minimum product using 1 integer in the range
+    a[0] to a[i] (both inclusive), and let count_1[i] be the number of distinct
+    ways in which this minimum product can be achieved using 1 integer in the
+    above range.
+    Since the product of 1 integer is that integer itself, therefore
+    min_1[0] = a[0], and for all i > 0, min_1[i] = min(min_1[i-1], a[i]).
+    Consequently, count_1[0] = 1, and for all i > 0,
+    (1) if a[i] == min_1[i-1], then count_1[i] = count_1[i-1] + 1,
+    (2) if a[i] < min_1[i-1], then count_1[i] = 1, and
+    (3) if a[i] > min_1[i-1], then count_1[i] = count_1[i-1].
+
+    Similarly, let min_2[i] be the minimum product using 2 distinct integers in
+    the range a[0] to a[i] (both inclusive), and let count_2[i] be the number of
+    distinct ways in which this minimum product can be achieved using 2 distinct
+    integers in the above range.
+    Now, min_2[0] = NIL, min_2[1] = a[0] * a[1], and for all i > 1,
+    min_2[i] = min(min_2[i-1], min_1[i-1] * a[i]) (this is because only the
+    minimum integer in the range a[0] to a[i-1] can be multiplied with a[i] to
+    achieve the minimum product).
+    Consequently, count_2[0] = NIL, count_2[1] = 1, and for all i > 1,
+    (1) if min_1[i-1] * a[i] == min_2[i-1], then
+    count_2[i] = count_1[i-1] + count_2[i-1] (this is because min_1[i-1] * a[i]
+    represents the minimum possible product when a[i] is the right-hand operand
+    of the product, and if this product is the same as the previously stored
+    minimum product, then the total number of distinct ways in which this
+    product can be achieved becomes equal to count_1[i-1] + count_2[i-1], as
+    count_1[i-1] is the number of times min_1[i-1] appears in the range
+    a[0] to a[i-1], and a[i] can be multiplied with each of those occurrences of
+    min_1[i-1] to achieve the same minimum product, and count_2[i-1] is the 
+    number of times this product can be achieved in the range a[0] to a[i-1]),
+    (2) if min_1[i-1] * a[i] < min_2[i-1], then count_2[i] = count_1[i-1] (this
+    is because if min_1[i-1] * a[i] is smaller than the previously stored
+    minimum product, then this becomes the new minimum product, and this new
+    minimum product can be achieved in count_1[i-1] distinct ways, by the logic
+    described above), and
+    (3) if min_1[i-1] * a[i] > min_2[i-1], then count_2[i] = count_2[i-1].
+
+    Similar logic applies to min_3[] and count_3[].
