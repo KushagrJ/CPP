@@ -224,6 +224,8 @@ https://codeforces.com/problemset/problem/525/B
 
     Solution :-
 
+    // Assuming 1-based indexing.
+
     In order to reverse the segment of the string starting at index a and ending
     at index (|s| - a + 1), both inclusive, the following loop can be used -
     for (int i = a, j = (s.size() - a + 1); i < j; ++i, --j)
@@ -256,3 +258,19 @@ https://codeforces.com/problemset/problem/525/B
 
     for (int i = 2; i <= (s.size() / 2); ++i)
         swap_count[i] += swap_count[i-1];
+
+
+--------------------------------------------------------------------------------
+
+
+004-851B-Arpa-and-an-exam-about-geometry
+https://codeforces.com/problemset/problem/851/B
+
+
+    Solution :-
+
+    For the question to have a solution, the points a, b and c must lie on a
+    circle and the distance between a and b must be equal to the distance
+    between b and c.
+
+    Three points lie on a circle if and only if they are not collinear.
