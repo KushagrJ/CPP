@@ -23,13 +23,12 @@ in increasing or decreasing order, only the first and last elements of the array
 need to be compared.
 
 To apply binary search on an infinite array, use that 'doubling the search
-space' method.
+space' method to obtain a value of upper_index.
 
-If an array is given such that it is first strictly increasing and then
-strictly decreasing, then to find the largest element, binary search can be
-used by repeatedly comparing a[mid] and a[mid + 1], as if a[mid] < a[mid + 1],
-then the largest element lies to the right, and if a[mid] > a[mid + 1], then
-the largest element lies to the left.
+Depending upon the problem, the type of binary search should be chosen, i.e.
+whether to compare the middle element for equality in every iteration, or to
+let lower_index eventually become equal to upper_index, giving the index of the
+target.
 
 
 --------------------------------------------------------------------------------
@@ -117,6 +116,33 @@ https://leetcode.com/problems/count-number-of-texts/description/
         s[1:1], and "b" can be appended to every decoding of s[1:0],
     (3) ans[3] == ans[2], as "d" can be appended to every decoding of s[1:2],
     and so on.
+
+
+--------------------------------------------------------------------------------
+
+
+005-162-Find-Peak-Element
+https://leetcode.com/problems/find-peak-element/description/
+
+
+    Solution :-
+
+    The array elements can be thought of as being alternatively strictly
+    increasing and strictly decreasing.
+
+    It is given that at least one peak exists, and for all valid i,
+    nums[i] != nums[i + 1].
+
+    Thus, binary search can be used to find a peak, with lo == 0 and
+    hi == (nums.length - 1) initially.
+
+    If nums[mid] > nums[mid + 1], then we can be sure that at least one peak
+    exists to the left of mid, including mid.
+    Else if nums[mid] < nums[mid + 1], then we can be sure that at least one
+    peak exists to the right of mid, excluding mid.
+
+    The searching stops when lo eventually becomes equal to hi, which gives the
+    index of a peak.
 
 
 --------------------------------------------------------------------------------
