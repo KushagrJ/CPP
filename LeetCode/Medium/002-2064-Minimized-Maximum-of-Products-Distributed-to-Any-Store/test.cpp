@@ -1,5 +1,6 @@
 class Solution
 {
+
     public:
 
     bool x_is_a_possible_answer(int n, vector<int>& q, int x)
@@ -40,4 +41,5 @@ class Solution
         // At this point, start == end.
         return start;
     }
+
 };

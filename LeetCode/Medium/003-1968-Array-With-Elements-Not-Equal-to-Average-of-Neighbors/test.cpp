@@ -1,5 +1,6 @@
 class Solution
 {
+
     public:
 
     std::vector<int> rearrangeArray(std::vector<int>& nums)
@@ -21,4 +22,5 @@ class Solution
 
         return ans;
     }
+
 };

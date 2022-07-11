@@ -1,5 +1,6 @@
 class Solution
 {
+
     public:
 
     vector<vector<char>> rotateTheBox(vector<vector<char>>& box)
@@ -32,4 +33,5 @@ class Solution
 
         return ans;
     }
+
 };

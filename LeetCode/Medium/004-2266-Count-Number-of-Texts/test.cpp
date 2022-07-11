@@ -1,7 +1,9 @@
 #define MOD 1000000007
 
+
 class Solution
 {
+
     public:
 
     int countTexts(string keys)
@@ -41,4 +43,5 @@ class Solution
 
         return ans[keys.size()];
     }
+
 };

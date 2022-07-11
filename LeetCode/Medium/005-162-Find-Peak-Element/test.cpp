@@ -1,5 +1,6 @@
 class Solution
 {
+
     public:
 
     int findPeakElement(vector<int>& nums)
@@ -20,4 +21,5 @@ class Solution
         // At this point, lo == hi.
         return lo;
     }
+
 };
