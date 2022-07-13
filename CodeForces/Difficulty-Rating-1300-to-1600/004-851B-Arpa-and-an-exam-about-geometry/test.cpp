@@ -1,3 +1,17 @@
+/*
+
+ * For the question to have a solution, the points a, b and c must lie on a
+   circle and the distance between a and b must be equal to the distance
+   between b and c.
+
+   Three points lie on a circle if and only if they are not collinear.
+
+ */
+
+
+
+
+
 #include <iostream>
 
 
