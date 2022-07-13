@@ -1,3 +1,14 @@
+/*
+
+ * Keep shifting the stones one by one towards the right, starting with the
+   rightmost stone in every row of the box.
+
+ */
+
+
+
+
+
 class Solution
 {
 

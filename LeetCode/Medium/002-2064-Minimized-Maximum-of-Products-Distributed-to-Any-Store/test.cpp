@@ -1,3 +1,20 @@
+/*
+
+ * Use a function which checks whether k is the value of a possible solution to
+   the problem, and use this function to (binary) search the smallest possible
+   value of k.
+
+   Note that if a particular k is the value of a possible solution to the
+   problem, i.e. if all products can be distributed such that every store gets
+   less than or equal to k products, then (k+1), (k+2), ... are all values of
+   possible solutions to the problem.
+
+ */
+
+
+
+
+
 class Solution
 {
 

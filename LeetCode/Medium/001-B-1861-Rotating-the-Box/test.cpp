@@ -1,3 +1,14 @@
+/*
+
+ * Similar to solution 1, but instead of using a loop to find the rightmost
+   possible empty cell, it is found on the go.
+
+ */
+
+
+
+
+
 class Solution
 {
 
