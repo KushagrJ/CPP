@@ -1,5 +1,8 @@
 /*
 
- * Let a == [4, 1, 6, 5, 3, 2, 0, 8, 7, 9]
+ * The reasoning behind the solution provided in the editorial doesn't seem
+   satisfactory.
+
+   Correctly proving the editorial's solution to be true is very hard.
 
  */
