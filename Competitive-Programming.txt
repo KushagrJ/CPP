@@ -23,9 +23,15 @@ in increasing or decreasing order, only the first and last elements of the array
 need to be compared.
 
 To apply binary search on an infinite array, use that 'doubling the search
-space' method to obtain a value of upper_index.
+space' method to obtain a value of hi.
 
 Depending upon the problem, the type of binary search should be chosen, i.e.
-whether to compare the middle element for equality in every iteration, or to
-let lower_index eventually become equal to upper_index, giving the index of the
-target.
+whether to compare mid for equality in every iteration, or to let lo eventually
+become equal to hi, giving the target.
+
+Binary search helps in certain types of optimization problems, such as those in
+which (i) only the value of an optimal solution is required, (ii) it can easily
+be checked whether a given value corresponds to a possible solution, and
+(iii) if a given value corresponds to a possible solution, then every value less
+than this value or greater than this value also corresponds to a possible
+solution.

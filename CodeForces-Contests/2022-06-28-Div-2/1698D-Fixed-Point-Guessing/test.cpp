@@ -1,3 +1,13 @@
+/*
+
+ * https://codeforces.com/blog/entry/104310
+
+ */
+
+
+
+
+
 #include <iostream>
 
 
