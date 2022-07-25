@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+
+
+int main()
+{
+
+    int t;
+    std::cin >> t;
+
+    while (t--)
+    {
+        int n, q;
+        std::cin >> n >> q;
+
+        
+    }
+
+    return 0;
+
+}
