@@ -30,9 +30,8 @@ whether to compare mid for equality in every iteration, or to let lo eventually
 become equal to hi, giving the target.
 
 Binary search helps in certain types of optimization problems, such as those in
-which (i) only the value of an optimal solution is required, (ii) it can easily
-be checked whether a given value corresponds to a possible solution, and
-(iii) if a given value corresponds to a possible solution, then every value less
-than this value or greater than this value also corresponds to a possible
-solution.
+which (i) it can easily be checked whether a given value corresponds to a
+possible solution and (ii) if a given value corresponds to a possible solution,
+then every value less than this value or greater than this value also
+corresponds to a possible solution.
 
